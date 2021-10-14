@@ -68,8 +68,12 @@ public class EnemyAI : MonoBehaviour
         return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
 
+   
+
     void Float()
     {
+        //return transform.localScale.x > 0;
+        
         transform.position = Vector3.MoveTowards(transform.position, positions[index], Time.deltaTime * speed);
 
         if (transform.position == positions[index])
@@ -85,19 +89,38 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            Destroy(collision.gameObject);
+            Debug.Log("hit");
+        }
+
+    }
+
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        transform.localScale = new Vector2(-(Mathf.Sign(Erb.velocity.x)), 1f);
+
+    }
+
     void Follow()
     {
         if (transform.position.x > target.position.x)
         {
-            transform.localScale = new Vector3(-1, 1, 0);
+            transform.localScale = new Vector3(-1, 1, 1);
             Erb.velocity = new Vector3(-speed, 0f);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
         }
-        if (transform.position.x > target.position.x)
+        if (transform.position.x < target.position.x)
         {
-            transform.localScale = new Vector3(1, 1, 0);
-            Erb.velocity = new Vector3(-speed, 0f);
+            transform.localScale = new Vector3(1, 1, 1);
+            Erb.velocity = new Vector3(speed, 0f);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
         }
     }
+
+   
 }

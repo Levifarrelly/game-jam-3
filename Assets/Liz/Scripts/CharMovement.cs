@@ -11,6 +11,8 @@ public class CharMovement : MonoBehaviour
     public bool isJumping = false;
 
     Rigidbody2D rb = null;
+    GameObject enemy;
+    GameObject player;
     //public float force;
     
 
@@ -19,6 +21,8 @@ public class CharMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         //jump = new Vector3(0, 2, 0);
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        player = GameObject.FindGameObjectWithTag("Player");
 
     }
 
@@ -51,7 +55,11 @@ public class CharMovement : MonoBehaviour
         {
             isJumping = false;
         }
+
+        
     }
+
+  
 
     private void OnCollisionExit2D(Collision2D collision)
     {

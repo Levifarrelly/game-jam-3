@@ -9,6 +9,7 @@ public class CharAnimation : MonoBehaviour
     public Sprite leftFace;
     public Sprite jumping;
     public Sprite attack;
+    public Sprite stand;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +25,29 @@ public class CharAnimation : MonoBehaviour
             CharSR.sprite = rightFace;
         }
 
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            CharSR.sprite = stand;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             CharSR.sprite = leftFace;
         }
 
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            CharSR.sprite = stand;
+        }
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             CharSR.sprite = jumping;
+        }
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            CharSR.sprite = stand;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -41,7 +57,7 @@ public class CharAnimation : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            CharSR.sprite = rightFace;
+            CharSR.sprite = stand;
         }
     }
 }

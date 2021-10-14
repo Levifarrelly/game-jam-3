@@ -92,7 +92,7 @@ public class Eneum : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), 1f);
+        //transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), 1f);
 
     }
 
