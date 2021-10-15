@@ -12,6 +12,8 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public int damage;
 
+    //public Animator camAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+                //camAnim.SetTrigger("shake");
                    for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<EnemyAI>().TakeDamage(damage);
@@ -33,12 +36,13 @@ public class PlayerAttack : MonoBehaviour
                 timeBtwAttack = startTimeBtwAttack;
             }
             
-            else
-            {
-                timeBtwAttack -= Time.deltaTime;
-            }
+            
         }
-               
+        else
+        {
+            timeBtwAttack -= Time.deltaTime;
+        }
+
     }
 
     void OnDrawGizmosSelected()
