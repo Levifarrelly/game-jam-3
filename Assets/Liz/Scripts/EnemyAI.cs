@@ -29,6 +29,8 @@ public class EnemyAI : MonoBehaviour
     public int health;
     public GameObject deatheffect;
 
+    public Animator camAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -133,6 +135,7 @@ public class EnemyAI : MonoBehaviour
     {
         Instantiate(deatheffect, transform.position, Quaternion.identity);
         health -= damage;
+        //camAnim.SetTrigger("shake");
         Debug.Log("damage TAKEN");
 
     }
