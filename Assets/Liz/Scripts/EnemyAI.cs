@@ -26,6 +26,9 @@ public class EnemyAI : MonoBehaviour
 
     private int index;
 
+    public int health;
+    public GameObject deatheffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +63,10 @@ public class EnemyAI : MonoBehaviour
             currState = EnemyState.Float;
         }
 
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
 
     }
 
@@ -110,17 +117,24 @@ public class EnemyAI : MonoBehaviour
     {
         if (transform.position.x > target.position.x)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-0.15f, 0.15f, 0.15f);
             Erb.velocity = new Vector3(-speed, 0f);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
         }
         if (transform.position.x < target.position.x)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             Erb.velocity = new Vector3(speed, 0f);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
         }
     }
 
-   
+   public void TakeDamage(int damage)
+    {
+        Instantiate(deatheffect, transform.position, Quaternion.identity);
+        health -= damage;
+        Debug.Log("damage TAKEN");
+
+    }
+
 }

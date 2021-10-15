@@ -32,7 +32,7 @@ public class CharMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
 
         transform.position += Vector3.right * horizontal * Time.deltaTime * speed;
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, 100), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, 100), Mathf.Clamp(transform.position.y, 0, 100), transform.position.z);
         
         
         if (Input.GetKeyDown(KeyCode.UpArrow) && (isJumping == false))
