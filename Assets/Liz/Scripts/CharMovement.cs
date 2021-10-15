@@ -37,6 +37,7 @@ public class CharMovement : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.UpArrow) && (isJumping == false))
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode2D.Impulse);
             
             //transform.position += 5 * transform.up;
